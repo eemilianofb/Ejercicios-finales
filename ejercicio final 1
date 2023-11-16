@@ -1,0 +1,94 @@
+//Ejercicio final
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main() {
+    int filas = 5;
+    int columnas = 7;
+    int i, j;
+    int matriz[5][7];
+    int sumaDiagonal = 0;
+	int sumaPrimeraFila = 0;
+	int sumaUltimaColumna = 0;
+    int sumaFilasPares = 0;
+	int sumaColumnasImpares = 0;
+	int sumaTriangularSuperior = 0; 
+	int sumaTriangularInferior = 0;
+
+    srand(time(NULL));
+
+    for (i = 0; i < filas; i++) {
+        for (j = 0; j < columnas; j++) {
+            matriz[i][j] = rand() % 10 + 1; 
+        }
+    }
+
+    printf("Matriz Original:\n");
+    for (i = 0; i < filas; i++) {
+        for (j = 0; j < columnas; j++) {
+            printf("%d ", matriz[i][j]);
+        }
+        printf("\n");
+    }
+
+//Diagional
+    printf("\nSuma de la Diagonal Principal: ");
+    for (i = 0; i < filas && i < columnas; i++) {
+        sumaDiagonal += matriz[i][i];
+    }
+    printf("%d\n", sumaDiagonal);
+
+//Primera fila
+    printf("Suma de la Primera Fila: ");
+    for (j = 0; j < columnas; j++) {
+        sumaPrimeraFila += matriz[0][j];
+    }
+    printf("%d\n", sumaPrimeraFila);
+
+//Ultima columna
+    printf("Suma de la Última Columna: ");
+    for (i = 0; i < filas; i++) {
+        sumaUltimaColumna += matriz[i][columnas - 1];
+    }
+    printf("%d\n", sumaUltimaColumna);
+
+//Filas pares
+    printf("Suma de las Filas Pares: ");
+    for (i = 0; i < filas; i += 2) {
+        for (j = 0; j < columnas; j++) {
+            sumaFilasPares += matriz[i][j];
+        }
+    }
+    printf("%d\n", sumaFilasPares);
+
+//Columnas impares
+    printf("Suma de las Columnas Impares: ");
+    for (j = 1; j < columnas; j += 2) {
+        for (i = 0; i < filas; i++) {
+            sumaColumnasImpares += matriz[i][j];
+        }
+    }
+    printf("%d\n", sumaColumnasImpares);
+
+//Triangular superior y la diagonal principal
+    printf("Suma del Triangular Superior y Diagonal Principal: ");
+    for (i = 0; i < filas; i++) {
+        for (j = i; j < columnas; j++) {
+            sumaTriangularSuperior += matriz[i][j];
+        }
+    }
+    printf("%d\n", sumaTriangularSuperior);
+
+//Triangular inferior y la diagonal principal
+    printf("Suma del Triangular Inferior y Diagonal Principal: ");
+    for (i = 0; i < filas; i++) {
+        for (j = 0; j <= i; j++) {
+            sumaTriangularInferior += matriz[i][j];
+        }
+    }
+    printf("%d\n", sumaTriangularInferior);
+
+    return 0;
+}
